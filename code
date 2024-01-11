@@ -1,0 +1,223 @@
+import pandas as pd
+df1=pd.read_csv('/content/Population of India.csv')
+df1
+df1.size
+df1.shape
+# Rearrange the columns (example: B, C, A order)
+df1 = df1[['State/UT',	'Population[50]',	'Percent (%)'	,'Male',	'Female','Sex ratio',	'Rural[51]',	'Urban[51]']]
+
+# Save the modified DataFrame to a new CSV file
+df1.to_csv('modified_dataset.csv', index=False)
+df1
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Assuming 'df1' is your modified DataFrame
+df1 = pd.read_csv('modified_dataset.csv')  # Replace 'modified_dataset.csv' with your actual modified dataset file
+
+# Plotting bar graph for 'Male' and 'Female' populations
+plt.bar(df1['State/UT'], df1['Male'], label='Male')
+plt.bar(df1['State/UT'], df1['Female'], bottom=df1['Male'], label='Female')
+plt.xlabel('State/UT')
+plt.ylabel('Population')
+plt.title('Male and Female Population Distribution by State/UT')
+plt.xticks(rotation=45, ha='right')  # Rotate x-axis labels for better visibility
+plt.legend()  # Show legend to distinguish between Male and Female bars
+plt.tight_layout()
+
+# Show the plot
+plt.show()
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Assuming 'df_selected' is your DataFrame containing the specified states
+data = {
+    'State/UT': ['Karnataka', 'Tamil Nadu', 'Andhra Pradesh', 'Kerala', 'Delhi (UT)', 'Maharashtra'],
+    'Male': [30966657, 36137975, 24738068, 16027412, 8887326, 58243056],
+    'Female': [30128640, 36009055, 24648731, 17378649, 7800615, 54131277],
+    'Total Population': [61095297, 72147030, 49386799, 33406061, 16787941, 112374333],
+    'Sex Ratio': [973, 996, 996, 1084, 868, 929]
+}
+
+df_selected = pd.DataFrame(data)
+
+# Plotting bar graph for Male and Female populations
+df_selected.plot(kind='bar', x='State/UT', y=['Male', 'Female'], stacked=True, figsize=(10, 6))
+plt.xlabel('State/UT')
+plt.ylabel('Population')
+plt.title('Male and Female Populations for Metroplotian states')
+plt.xticks(rotation=45, ha='right')  # Rotate x-axis labels for better visibility
+plt.legend()
+plt.show()
+
+# Plotting bar graph for Total Population
+df_selected.plot(kind='bar', x='State/UT', y='Total Population', color='skyblue', figsize=(10, 6))
+plt.xlabel('State/UT')
+plt.ylabel('Population')
+plt.title('Total Population for Metropolitian states')
+plt.xticks(rotation=45, ha='right')  # Rotate x-axis labels for better visibility
+plt.show()
+
+# Plotting bar graph for Sex Ratio
+df_selected.plot(kind='bar', x='State/UT', y='Sex Ratio', color='lightcoral', figsize=(10, 6))
+plt.xlabel('State/UT')
+plt.ylabel('Sex Ratio')
+plt.title('Sex Ratio for Metropolitains states')
+plt.xticks(rotation=45, ha='right')  # Rotate x-axis labels for better visibility
+plt.show()
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Assuming 'df_selected' is your DataFrame containing the specified states
+data = {
+    'State/UT': ['Karnataka', 'Tamil Nadu', 'Andhra Pradesh', 'Kerala', 'Delhi (UT)', 'Maharashtra'],
+    'Urban Population': [37552529, 37189229, 34776389, 17445506, 944727, 61545441],
+    'Rural Population': [23578175, 3494972, 14610410, 15932171, 12905780, 50827531],
+    'Total Population': [61095297, 72147030, 49386799, 33406061, 16787941, 112374333],
+}
+
+df_selected = pd.DataFrame(data)
+
+# Plotting stacked bar graph for Urban and Rural populations
+df_selected.plot(kind='bar', x='State/UT', y=['Urban Population', 'Rural Population'], stacked=True, figsize=(10, 6))
+plt.xlabel('State/UT')
+plt.ylabel('Population')
+plt.title('Urban and Rural Populations for Selected States')
+plt.xticks(rotation=45, ha='right')  # Rotate x-axis labels for better visibility
+plt.legend()
+plt.show()
+
+# Plotting bar graph for Total Population
+df_selected.plot(kind='bar', x='State/UT', y='Total Population', color='skyblue', figsize=(10, 6))
+plt.xlabel('State/UT')
+plt.ylabel('Population')
+plt.title('Total Population for Selected States')
+plt.xticks(rotation=45, ha='right')  # Rotate x-axis labels for better visibility
+plt.show()
+import pandas as pd
+df2=pd.read_csv('/content/GOI.csv')
+df2
+# Rearrange the columns (example: B, C, A order)
+df2 = df2[['Country/ States/ Union Territories Name'	,'Literacy Rate (Persons) - Total - 2011'	,'Literacy Rate (Persons) - Rural - 2011','Literacy Rate (Persons) - Urban - 2011']]
+
+# Save the modified DataFrame to a new CSV file
+df2.to_csv('modified_dataset.csv', index=False)
+df2
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Load your data from the CSV file
+data = pd.read_csv("/content/GOI.csv")
+
+# Extract relevant columns
+regions = data['Country/ States/ Union Territories Name']
+total_rates = data['Literacy Rate (Persons) - Total - 2011']
+# Set up bar positions and bar width
+bar_width = 0.25
+bar_positions_total = np.arange(len(regions))
+
+# Create bar plots
+plt.bar(bar_positions_total, total_rates, width=bar_width, label='Total')
+
+# Add labels and title
+plt.xlabel('Regions')
+plt.ylabel('Literacy Rate (%)')
+plt.title('Literacy Rates by Region and Area (2011)')
+plt.xticks(bar_positions_total + bar_width, regions, rotation=45, ha='right')  # Rotate x-axis labels for better visibility
+plt.legend()
+
+# Show the plot
+plt.tight_layout()  # Adjust layout to prevent clipping of labels
+plt.show()
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Sample data (replace with your actual data)
+data = {
+    'Country/ States/ Union Territories Name': ['Karnataka', 'Tamil Nadu', 'Andhra Pradesh', 'Kerala', 'Delhi (UT)', 'Maharashtra'],
+    'Literacy Rate (Persons) - Rural - 2011': [70, 75, 65, 80, 68, 82],
+    'Literacy Rate (Persons) - Urban - 2011': [90, 95, 85, 92, 88, 94]
+}
+
+df = pd.DataFrame(data)
+
+# Extract relevant columns
+regions = df['Country/ States/ Union Territories Name']
+rural_rates = df['Literacy Rate (Persons) - Rural - 2011']
+urban_rates = df['Literacy Rate (Persons) - Urban - 2011']
+
+# Set up bar positions and bar width
+bar_width = 0.35
+bar_positions_rural = np.arange(len(regions))
+bar_positions_urban = bar_positions_rural + bar_width
+
+# Create bar plot for Rural
+plt.bar(bar_positions_rural, rural_rates, width=bar_width, label='Rural', color='green')
+
+# Add labels and title for Rural
+plt.xlabel('States')
+plt.ylabel('Literacy Rate (%)')
+plt.title('Rural Literacy Rates by State (2011)')
+plt.xticks(bar_positions_rural + bar_width / 2, regions, rotation=45, ha='right')  # Rotate x-axis labels for better visibility
+plt.legend()
+
+# Show the plot for Rural
+plt.tight_layout()  # Adjust layout to prevent clipping of labels
+plt.show()
+
+# Create bar plot for Urban
+plt.bar(bar_positions_urban, urban_rates, width=bar_width, label='Urban', color='blue')
+
+# Add labels and title for Urban
+plt.xlabel('States')
+plt.ylabel('Literacy Rate (%)')
+plt.title('Urban Literacy Rates by State (2011)')
+plt.xticks(bar_positions_urban + bar_width / 2, regions, rotation=45, ha='right')  # Rotate x-axis labels for better visibility
+plt.legend()
+
+# Show the plot for Urban
+plt.tight_layout()  # Adjust layout to prevent clipping of labels
+plt.show()
+# Import necessary libraries
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor  # You can choose a different model based on your problem
+
+# Load your datasets
+population_data = pd.read_csv('path/to/population_dataset.csv')
+literacy_data = pd.read_csv('path/to/literacy_dataset.csv')
+
+# Merge datasets based on a common identifier, such as state
+merged_data = pd.merge(population_data, literacy_data, on='common_identifier', how='inner')
+
+# Select features and target variable
+features = merged_data[['feature1', 'feature2', 'feature3', ...]]  # Replace with your actual feature names
+target_variable = merged_data['target_variable']  # Replace with your actual target variable name
+
+# Split data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(features, target_variable, test_size=0.2, random_state=42)
+
+# Initialize the model (Random Forest Regressor in this case)
+model = RandomForestRegressor()  # You can choose a different model based on your problem
+
+# Train the model
+model.fit(X_train, y_train)
+
+# Make predictions
+predictions = model.predict(X_test)
+
+# Evaluate the model (you may need to import metrics appropriate for your specific problem)
+# For regression problems
+from sklearn.metrics import mean_squared_error
+mse = mean_squared_error(y_test, predictions)
+print(f'Mean Squared Error: {mse}')
+
+# For classification problems
+# from sklearn.metrics import accuracy_score
+# accuracy = accuracy_score(y_test, predictions)
+# print(f'Accuracy: {accuracy}')
+
+# Now you can use the trained model to make predictions on new data
+# new_data_predictions = model.predict(new_data_features)
